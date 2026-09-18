@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import ProductAPI from "../service";
 
 const formatPrice = (value) =>
@@ -7,7 +8,20 @@ const formatPrice = (value) =>
   }).format(value);
 
 function ProductDetail({ id, onBack }) {
-  const product = ProductAPI.get(id);
+  const [product, setProduct] = useState(() => ProductAPI.get(id));
+
+  useEffect(() => {
+    setProduct(ProductAPI.get(id));
+  }, [id]);
+
+  useEffect(() => {
+    if (!product) return;
+    const prevTitle = document.title;
+    document.title = `${product.name} — Каталог`;
+    return () => {
+      document.title = prevTitle;
+    };
+  }, [product]);
 
   if (!product) {
     return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function ProductAdd({ initial, onSave, onCancel }) {
   const [name, setName] = useState(initial?.name ?? "");
@@ -6,7 +6,19 @@ function ProductAdd({ initial, onSave, onCancel }) {
   const [category, setCategory] = useState(initial?.category ?? "");
   const [stock, setStock] = useState(initial?.stock ?? "");
 
+  const nameRef = useRef(null);
   const isEdit = Boolean(initial);
+
+  useEffect(() => {
+    nameRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    setName(initial?.name ?? "");
+    setPrice(initial?.price ?? "");
+    setCategory(initial?.category ?? "");
+    setStock(initial?.stock ?? "");
+  }, [initial]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +47,7 @@ function ProductAdd({ initial, onSave, onCancel }) {
         <label>
           Название
           <input
+            ref={nameRef}
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}

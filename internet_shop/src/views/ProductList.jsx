@@ -1,20 +1,30 @@
+import { useEffect } from "react";
+
 const formatPrice = (value) =>
   new Intl.NumberFormat("ru-BY", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);
-  
-  function ProductList({ products, onSelect, onAdd, onDelete, onEdit }) {
+
+function ProductList({ products, onSelect, onAdd, onDelete, onEdit }) {
   const handleRowDoubleClick = (id) => {
     onEdit(id);
   };
 
   const handleDeleteClick = (e, id) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     if (window.confirm("Удалить товар?")) {
       onDelete(id);
     }
   };
+
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = `Каталог товаров (${products.length})`;
+    return () => {
+      document.title = prevTitle;
+    };
+  }, [products.length]);
 
   return (
     <section>

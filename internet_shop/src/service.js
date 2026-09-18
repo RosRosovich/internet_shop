@@ -40,6 +40,6 @@ const ProductAPI = {
     );
     return product;
   },
-};ы
+};
 
 export default ProductAPI;

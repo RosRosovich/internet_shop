@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductList from "./views/ProductList";
 import ProductDetail from "./views/ProductDetail";
 import ProductAdd from "./views/ProductAdd";
@@ -31,6 +31,17 @@ function App() {
     if (selectedId === id) setSelectedId(null);
     if (editingId === id) setEditingId(null);
   };
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      if (isAdding) setIsAdding(false);
+      if (editingId !== null) setEditingId(null);
+      if (selectedId !== null) setSelectedId(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isAdding, editingId, selectedId]);
 
   if (isAdding) {
     return (
