@@ -1,0 +1,273 @@
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.list-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-primary {
+  padding: 6px 14px;
+  border-radius: 5px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.btn-cancel {
+  padding: 6px 14px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  font: inherit;
+}
+
+.btn-delete {
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  font: inherit;
+}
+.btn-delete:hover {
+  color: #e5484d;
+  border-color: #e5484d;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin-top: 16px;
+}
+.product-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--text-h);
+}
+.product-form input {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font: inherit;
+}
+.product-form input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.view-switcher {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.view-switcher button {
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  font: inherit;
+}
+.view-switcher button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  text-align: left;
+}
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.product-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.product-card__actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.product-card:hover .product-card__actions,
+.product-card:focus-within .product-card__actions {
+  opacity: 1;
+}
+@media (hover: none) {
+  .product-card__actions { opacity: 1; }
+}
+
+.product-card__action {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+.product-card__action:hover {
+  background: var(--code-bg);
+}
+.product-card__action--edit:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+.product-card__action--delete:hover {
+  color: #e5484d;
+  border-color: #e5484d;
+}
+
+.product-card__image {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--code-bg);
+  border-radius: 6px;
+  font-size: 42px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.product-card__price {
+  font-weight: 600;
+  color: var(--text-h);
+}
+.product-card__name {
+  color: var(--text-h);
+  font-size: 15px;
+}
+.product-card__meta {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.product-table th,
+.product-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.product-table tbody tr:hover {
+  background: var(--code-bg);
+  cursor: pointer;
+}
+
+.link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.confirm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: confirm-fade-in 0.12s ease;
+}
+
+.confirm-dialog {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg);
+  color: var(--text-h);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 20px 22px;
+  text-align: left;
+  animation: confirm-pop-in 0.14s ease;
+}
+
+.confirm-dialog__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-family: var(--heading);
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.confirm-dialog__message {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.confirm-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@keyframes confirm-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes confirm-pop-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
